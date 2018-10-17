@@ -12,21 +12,28 @@ var cardList = ["fa fa-bolt", "fa fa-anchor", "fa fa-bicycle"]
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length,
+function shuffle(cardList) {
+    var currentIndex = cardList.length,
         temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = cardList[currentIndex];
+        cardList[currentIndex] = cardList[randomIndex];
+        cardList[randomIndex] = temporaryValue;
     }
 
-    return array;
+    return cardList;
 }
 
+counter = 0;
+
+function noOfClicks() {
+    counter = counter + 1
+
+    document.getElementById("moveCount").innerHTML = counter
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
