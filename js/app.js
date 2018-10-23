@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-var cardList = ["fa fa-bolt", "fa fa-anchor", "fa fa-bicycle"]
+var cardList = ["fa fa-bolt", "fa fa-anchor", "fa fa-bicycle", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-cube", "fa fa-leaf", "fa fa-bomb"]
 
 /*
  * Display the cards on the page
@@ -27,6 +27,13 @@ function shuffle(cardList) {
     return cardList;
 }
 
+// for (i = 0; i < 16; i++) {
+//     document.getElementById("list1").className = cardList[i]
+// }
+
+function refreshPage() {
+    shuffle(cardList);
+}
 counter = 0;
 
 function noOfClicks() {
@@ -35,12 +42,13 @@ function noOfClicks() {
     document.getElementById("moveCount").innerHTML = counter
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+// /*
+//  * set up the event listener for a card. If a card is clicked:
+//  *  - display the card's symbol (put this functionality in another function that you call from this one)
+//  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+//  *  - if the list already has another card, check to see if the two cards match
+//  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+//  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+//  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+//  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+//  *
