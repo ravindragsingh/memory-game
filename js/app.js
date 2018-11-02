@@ -1,7 +1,29 @@
 /*
  * Create a list that holds all of your cards
  */
+cards = [
+    "fa-diamond", "fa-diamond",
+    "fa-paper-plane-o", "fa-paper-plane-o",
+    "fa-bolt", "fa-bolt",
+    "fa-cube", "fa-cube",
+    "fa-anchor", "fa-anchor",
+    "fa-leaf", "fa-leaf",
+    "fa-bicycle", "fa-bicycle",
+    "fa-bomb", "fa-bomb"
+]
 
+function generateCard(card) {
+    return `<li class ="card"><i class = "fa ${card}"></i></li>`;
+}
+
+function initGame() {
+    var deck = document.querySelector('.deck')
+    var cardHTML = shuffle(cards).map(function(card) {
+        return generateCard(card);
+    })
+    deck.innerHTML = cardHTML.join(''); // joining in HTML
+}
+initGame();
 
 /*
  * Display the cards on the page
@@ -26,13 +48,39 @@ function shuffle(array) {
     return array;
 }
 
-allCards = document.querySelectorAll('.card');
+var allCards = document.querySelectorAll('.card');
+var openCards = [];
+
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
-        card.classList.add('open', 'show');
-    })
+        if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
+            console.log(card); //logging what is being clicked
+            //now lets push that card which is clicked in the array later compare the length of the array to 2
+            // so that not more than 2 are being clicked
 
-});
+            openCards.push(card);
+            card.classList.add('open', 'show');
+            // after open and show check if the card matches with the preious open
+            //console.log(card.classList);
+
+            // if cards match then dont do this
+            if (openCards.length == 2) {
+                setTimeout(function() {
+                    openCards.forEach(function(card) {
+                        card.classList.remove('open', 'show');
+                    })
+                    openCards = [];
+                }, 500)
+
+            }
+            // else {
+
+            // }
+        }
+
+    })
+})
+
 
 
 /*
