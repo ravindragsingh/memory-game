@@ -12,10 +12,12 @@ cards = [
     "fa-bomb", "fa-bomb"
 ]
 
+//data-card added to use it for matching cards
 function generateCard(card) {
-    return `<li class ="card"><i class = "fa ${card}"></i></li>`;
+    return `<li class ="card" data-card =" ${card}"><i class = "fa ${card}"></i></li>`;
 }
 
+//generating HTML
 function initGame() {
     var deck = document.querySelector('.deck')
     var cardHTML = shuffle(cards).map(function(card) {
@@ -54,7 +56,7 @@ var openCards = [];
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
         if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
-            console.log(card); //logging what is being clicked
+            //console.log(card); //logging what is being clicked
             //now lets push that card which is clicked in the array later compare the length of the array to 2
             // so that not more than 2 are being clicked
 
@@ -63,16 +65,30 @@ allCards.forEach(function(card) {
             // after open and show check if the card matches with the preious open
             //console.log(card.classList);
 
-            // if cards match then dont do this
-            if (openCards.length == 2) {
-                setTimeout(function() {
-                    openCards.forEach(function(card) {
-                        card.classList.remove('open', 'show');
-                    })
-                    openCards = [];
-                }, 500)
 
+            if (openCards.length == 2) {
+                if (openCards[0].dataset.card == openCards[1].dataset.card) {
+                    console.log("this is a match")
+                    openCards[0].classList.add('match');
+                    openCards[0].classList.add('show');
+                    openCards[0].classList.add('open');
+                    openCards[1].classList.add('match');
+                    openCards[1].classList.add('show');
+                    openCards[1].classList.add('open');
+                    openCards = [];
+                }
+                // if cards match then dont do this
+                else {
+                    setTimeout(function() {
+                        openCards.forEach(function(card) {
+                            card.classList.remove('open', 'show');
+                        })
+                        openCards = [];
+                    }, 500)
+
+                }
             }
+
             // else {
 
             // }
