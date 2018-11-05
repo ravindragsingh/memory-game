@@ -18,6 +18,7 @@ function refresh() {
     location.reload()
 }
 moves = 0;
+cardMatch = 0; // number of pairs = 8
 
 //data-card added to use it for matching cards
 function generateCard(card) {
@@ -63,6 +64,8 @@ var openCards = [];
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
         moves = moves + 1;
+
+
         document.getElementById("move").innerHTML = moves;
         if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
             //console.log(card); //logging what is being clicked
@@ -73,11 +76,16 @@ allCards.forEach(function(card) {
             card.classList.add('open', 'show');
             // after open and show check if the card matches with the preious open
             //console.log(card.classList);
+            // Match winning
+            if (cardMatch == 8) {
+                alert(`You have won the match in ${moves} moves`)
 
+            }
 
             if (openCards.length == 2) {
                 if (openCards[0].dataset.card == openCards[1].dataset.card) {
                     console.log("this is a match")
+                    cardMatch++;
                     openCards[0].classList.add('match');
                     openCards[0].classList.add('show');
                     openCards[0].classList.add('open');
@@ -85,7 +93,9 @@ allCards.forEach(function(card) {
                     openCards[1].classList.add('show');
                     openCards[1].classList.add('open');
                     openCards = [];
+
                 }
+
                 // if cards match then dont do this
                 else {
                     setTimeout(function() {
