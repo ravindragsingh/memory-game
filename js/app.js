@@ -13,6 +13,8 @@ cards = [
     "fa-bomb", "fa-bomb"
 ]
 
+
+
 // refreshing the page
 
 function refresh() {
@@ -20,10 +22,6 @@ function refresh() {
 }
 moves = 0;
 cardMatch = 0; // number of pairs = 8
-
-
-
-
 
 //data-card added to use it for matching cards
 function generateCard(card) {
@@ -39,6 +37,22 @@ function initGame() {
     deck.innerHTML = cardHTML.join(''); // joining in HTML
 }
 initGame();
+
+// start rating
+
+// function generateStar(star) {
+//     return `<li class ="star" data-star =" ${star}"><i class = "fa ${star}"></i></li>`;
+// }
+
+// //generating HTML
+// function starGame() {
+//     var stars = document.querySelector('.stars')
+//     var starHTML = shuffle(starsAll).map(function(star) {
+//         return generateStar(star);
+//     })
+//     stars.innerHTML = starHTML.join(''); // joining in HTML
+// }
+// starGame();
 
 /*
  * Display the cards on the page
@@ -94,6 +108,77 @@ allCards.forEach(function(card) {
 
 
         document.getElementById("move").innerHTML = moves;
+
+        //  displaying star logic
+        if (moves < 9) {
+            starsAll = [
+                    "fa-star", "fa-star", "fa-star"
+                ]
+                // start rating
+
+            function generateStar(star) {
+                return `<li class ="star" data-star =" ${star}"><i class = "fa ${star}"></i></li>`;
+            }
+
+            //generating HTML
+            function starGame() {
+                var stars = document.querySelector('.stars')
+                var starHTML = shuffle(starsAll).map(function(star) {
+                    return generateStar(star);
+                })
+                stars.innerHTML = starHTML.join(''); // joining in HTML
+            }
+            starGame();
+
+            console.log("3 star");
+        } else {
+
+            if (moves > 8 && moves < 17) {
+
+                starsAll = [
+                        "fa-star", "fa-star"
+                    ]
+                    // start rating
+
+                function generateStar(star) {
+                    return `<li class ="star" data-star =" ${star}"><i class = "fa ${star}"></i></li>`;
+                }
+
+                //generating HTML
+                function starGame() {
+                    var stars = document.querySelector('.stars')
+                    var starHTML = shuffle(starsAll).map(function(star) {
+                        return generateStar(star);
+                    })
+                    stars.innerHTML = starHTML.join(''); // joining in HTML
+                }
+                starGame();
+                console.log("2 star");
+            } else {
+
+                starsAll = [
+                        "fa-star"
+                    ]
+                    // start rating
+
+                function generateStar(star) {
+                    return `<li class ="star" data-star =" ${star}"><i class = "fa ${star}"></i></li>`;
+                }
+
+                //generating HTML
+                function starGame() {
+                    var stars = document.querySelector('.stars')
+                    var starHTML = shuffle(starsAll).map(function(star) {
+                        return generateStar(star);
+                    })
+                    stars.innerHTML = starHTML.join(''); // joining in HTML
+                }
+                starGame();
+                console.log("1 star")
+            }
+        }
+
+        // makins sure open and show cards are not clickable
         if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
             //console.log(card); //logging what is being clicked
             //now lets push that card which is clicked in the array later compare the length of the array to 2
