@@ -12,6 +12,13 @@ cards = [
     "fa-bomb", "fa-bomb"
 ]
 
+// refreshing the page
+
+function refresh() {
+    location.reload()
+}
+moves = 0;
+
 //data-card added to use it for matching cards
 function generateCard(card) {
     return `<li class ="card" data-card =" ${card}"><i class = "fa ${card}"></i></li>`;
@@ -55,6 +62,8 @@ var openCards = [];
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
+        moves = moves + 1;
+        document.getElementById("move").innerHTML = moves;
         if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
             //console.log(card); //logging what is being clicked
             //now lets push that card which is clicked in the array later compare the length of the array to 2
