@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+
 cards = [
     "fa-diamond", "fa-diamond",
     "fa-paper-plane-o", "fa-paper-plane-o",
@@ -19,6 +20,10 @@ function refresh() {
 }
 moves = 0;
 cardMatch = 0; // number of pairs = 8
+
+
+
+
 
 //data-card added to use it for matching cards
 function generateCard(card) {
@@ -65,6 +70,28 @@ allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
         moves = moves + 1;
 
+        //Starting the timer on click 
+
+
+        var seconds = 00;
+        var sec = 00;
+        var mins = 00;
+        setInterval(function() {
+            var a = new Date();
+            document.getElementById("timer").innerHTML = mins + ":" + seconds + " : " + sec;
+            sec++;
+
+            if (sec == 2) {
+                seconds++;
+                if (seconds == 60) {
+                    mins++;
+                    seconds = 00;
+                }
+                sec = 00;
+            }
+        }, 500);
+        //timer ends
+
 
         document.getElementById("move").innerHTML = moves;
         if (!card.classList.contains('.open') || !card.classList.contains('.show') || !card.classList.contains('.match')) {
@@ -76,14 +103,11 @@ allCards.forEach(function(card) {
             card.classList.add('open', 'show');
             // after open and show check if the card matches with the preious open
             //console.log(card.classList);
-            // Match winning
-            if (cardMatch == 8) {
-                alert(`You have won the match in ${moves} moves`)
 
-            }
 
             if (openCards.length == 2) {
                 if (openCards[0].dataset.card == openCards[1].dataset.card) {
+
                     console.log("this is a match")
                     cardMatch++;
                     openCards[0].classList.add('match');
@@ -93,6 +117,12 @@ allCards.forEach(function(card) {
                     openCards[1].classList.add('show');
                     openCards[1].classList.add('open');
                     openCards = [];
+
+                    // Match winning
+                    if (cardMatch == 8) {
+                        alert(`You have won the match in ${moves} moves`)
+
+                    }
 
                 }
 
